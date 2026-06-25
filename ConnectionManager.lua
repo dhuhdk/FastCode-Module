@@ -16,22 +16,13 @@ function ConnectionManager:Bind(Key, Connection)
     return Connection
 end
 
-function ConnectionManager:Remove(Key, Bool)
+function ConnectionManager:Disconnect(Key)
     assert(type(Key) == "string", "Arg1 must be a string value.")
-    Bool = (Bool == nil and false) or Bool
-    assert(type(Bool) == "boolean", "Arg2 must be a boolean value.")
     local OldConnection = self.Events[Key]
     if OldConnection then
-        if Bool and OldConnection.Connected then OldConnection:Disconnect() end
+        OldConnection:Disconnect()
         self.Events[Key] = nil
     end
-    return OldConnection
-end
-
-function ConnectionManager:Disconnect(Key)
-    assert(type(Key) == "string", "Arg must be a string value.")
-    local OldConnection = self.Events[Key]
-    if OldConnection then if OldConnection.Connected then OldConnection:Disconnect() end end
     return OldConnection
 end
 
@@ -40,6 +31,18 @@ function ConnectionManager:Clear()
         if Conn.Connected then Conn:Disconnect() end
     end
     table.clear(self.Events)
+end
+
+function ConnectionManager:Get(Key)
+    if self.Events[Key] then
+        if not self.Events[Key].Connected then
+            self.Events[Key] = nil
+            return nil
+        else
+            return self.Events[Key]
+        end
+    end
+    return nil
 end
 
 return ConnectionManager
