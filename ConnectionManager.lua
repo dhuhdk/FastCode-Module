@@ -36,8 +36,6 @@ function ConnectionManager:Disconnect(Key)
 end
 
 function ConnectionManager:Clear()
-    Bool = (Bool == nil and false) or Bool
-    assert(type(Bool) == "boolean", "Arg2 must be a boolean value.")
     for K, Conn in pairs(self.Events) do
         if Conn.Connected then Conn:Disconnect() end
     end
