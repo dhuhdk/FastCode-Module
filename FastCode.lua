@@ -40,11 +40,35 @@ function FastCode:GetPlayerContext(PlayerName)
         local NChar = Char
         local NHum = NChar:WaitForChild("Humanoid")
         local NRoot = NChar:WaitForChild("HumanoidRootPart")
-        local NBackpack = NPlr:WaitForChild("Backpack")
+        local NBackpack = Plr:WaitForChild("Backpack")
         local NAnimator = NHum:WaitForChild("Animator")
         self.Char = NChar; self.Hum = NHum; self.Root = NRoot; self.Backpack = NBackpack; self.Animator = NAnimator
     end)
     return self
+end
+
+function FastCode:GetService()
+    local RS = game:GetService("RunService")
+    local UIS = game:GetService("UserInputService")
+    local VIM = game:GetService("VirtualInputManager")
+    local TS = game:GetService("TweenService")
+    local TCS = game:GetService("TextChatService")
+    local CAS = game:GetService("ContextActionService")
+    self.RS = RS; self.UIS = UIS; self.VIM = VIM; self.TS = TS; self.TCS = TCS; self.CAS = CAS
+    return self
+end
+
+function FastCode:InfiniteYield()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+end
+
+function FastCode.Track(Animator, AnimationId)
+    if typeof(Animator) ~= "Instance" or not Animator:IsA("Animator") then error("Arg1 need to be an animator instance.") end
+    if type(AnimationId) ~= "string" then error("AnimationId must be a string value.") end
+    local Animation = Instance.new("Animation")
+    Animation.AnimationId = AnimationId
+    local Track = Animator:LoadAnimation(Animation)
+    return Track, Animation
 end
 
 return FastCode
