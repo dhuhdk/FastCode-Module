@@ -1,4 +1,7 @@
+local ConnectionManager = loadstring(HttpGet:("https://raw.githubusercontent.com/dhuhdk/FastCode-Module/refs/heads/main/ConnectionManager.lua?token=GHSAT0AAAAAAEA5YTEPDE7W5EPZE5UQJ34S2R5NSZQ"))()
+
 local FastCode = {}
+FastCode.ConnectionManager = {}
 FastCode.__index = FastCode
 
 function FastCode.new()
@@ -18,6 +21,13 @@ local function IsPlayerAvailable(PlayerName)
     else error("Cannot find the player that start by " .. PlayerName .. ".") end
 end
 
+function FastCode.ConnectionManager.new(Name)
+    assert(type(Name) ~= "string", "Arg must be an string value.")
+    if FastCode.ConnectionManager[Name] then error("There was an avail storage name: " .. Name)
+    local NewStorage = ConnectionManager.new(Name)
+    FastCode.ConnectionManager[Name] = NewStorage
+    return NewStorage
+end
 
 function FastCode:GetPlayerContext(PlayerName)
     local Plrs = game.Players
