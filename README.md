@@ -1,0 +1,2 @@
+# FastCode-Module
+ok
