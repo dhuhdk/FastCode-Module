@@ -19,7 +19,10 @@ end
 function ConnectionManager:Remove(Key)
     assert(type(Key) == "string", "Arg must be a string value.")
     local OldConnection = self.Events[Key]
-    if OldConnection then self.Events[Key] = nil end
+    if OldConnection then
+        self.Events[Key] = nil
+        if not OldConnection.Connected then return nil end
+    end
     return OldConnection
 end
 
@@ -27,8 +30,9 @@ function ConnectionManager:Disconnect(Key)
     assert(type(Key) == "string", "Arg1 must be a string value.")
     local OldConnection = self.Events[Key]
     if OldConnection then
-        OldConnection:Disconnect()
         self.Events[Key] = nil
+        if not OldConnection.Connected then return nil end
+        OldConnection:Disconnect()
     end
     return OldConnection
 end
