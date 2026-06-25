@@ -59,4 +59,12 @@ function ConnectionManager:Get(Key)
     return nil
 end
 
+function ConnectionManager.Connected(Key)
+    assert(type(Key) == "string", "Arg1 must be a string.")
+    if self.Events[Key] then
+        return self.Events[Key].Connected
+    end
+    return false
+end
+
 return ConnectionManager
