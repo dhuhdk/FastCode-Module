@@ -31,8 +31,11 @@ function ConnectionManager:Disconnect(Key)
     local OldConnection = self.Events[Key]
     if OldConnection then
         self.Events[Key] = nil
-        if not OldConnection.Connected then return nil end
-        OldConnection:Disconnect()
+        if OldConnection.Connected then
+            OldConnection:Disconnect()
+        else
+            return nil
+        end
     end
     return OldConnection
 end
