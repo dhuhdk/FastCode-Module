@@ -39,9 +39,8 @@ function ConnectionManager:Get(Key)
         if not self.Events[Key].Connected then
             self.Events[Key] = nil
             return nil
-        else
-            return self.Events[Key]
         end
+        return self.Events[Key]
     end
     return nil
 end
