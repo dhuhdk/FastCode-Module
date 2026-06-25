@@ -34,6 +34,7 @@ function ConnectionManager:Clear()
 end
 
 function ConnectionManager:Get(Key)
+    assert(type(Key) == "string", "Arg1 must be a string.")
     if self.Events[Key] then
         if not self.Events[Key].Connected then
             self.Events[Key] = nil
