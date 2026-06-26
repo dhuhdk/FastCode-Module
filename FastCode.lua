@@ -1,4 +1,4 @@
-local ConnectionManager = loadstring(game:HttpGet:("https://cdn.jsdelivr.net/gh/dhuhdk/FastCode-Module@main/ConnectionManager.lua"))()
+local ConnectionManager = loadstring(game:HttpGet:("https://raw.githubusercontent.com/dhuhdk/FastCode-Module/refs/heads/main/ConnectionManager.lua"))()
 
 local FastCode = {}
 FastCode.ConnectionManager = {}
