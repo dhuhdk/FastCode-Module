@@ -57,6 +57,7 @@ function FastCode:GetPlayerContext(PlayerName)
             __newindex = function(T, Key, Value)
                 local CanonicalKey = ContextKeymap[Key] or Key
                 if not IsSystemUpdating then 
+                    print("Hey..")
                     rawset(T, CanonicalKey, rawget(T, CanonicalKey))
                 else
                     rawset(T, CanonicalKey, Value)
